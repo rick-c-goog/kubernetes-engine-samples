@@ -1,8 +1,11 @@
 apiVersion: ray.io/v1
 kind: RayJob
 metadata:
+  labels:
+     kueue.x-k8s.io/queue-name: dws-local-queue
   name: pytorch-mnist-job
 spec:
+  suspend: true
   shutdownAfterJobFinishes: true
   entrypoint: python ai-ml/gke-ray/raytrain/dws/raytrain/train.py
   runtimeEnvYAML: |
@@ -42,8 +45,6 @@ spec:
            num-gpus: "4"
         template:
           metadata:
-             labels:
-               kueue.x-k8s.io/queue-name: dws-local-queue
              name: ray-job
             # annotations:
             #   gke-gcsfuse/volumes: "true"
