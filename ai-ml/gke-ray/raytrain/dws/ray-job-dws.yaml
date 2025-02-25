@@ -44,8 +44,8 @@ spec:
         minReplicas: 1
         maxReplicas: 5
         groupName: small-group
-        rayStartParams: 
-           num-gpus: "1"
+        rayStartParams: {}
+        #   num-gpus: "1"
         template:
           metadata:
              name: ray-job
