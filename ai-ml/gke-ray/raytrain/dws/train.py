@@ -151,7 +151,7 @@ def train_fashion_mnist(num_workers=4, cpus_per_worker=1, use_gpu=True, gpus_per
     scaling_config = ScalingConfig(
         num_workers=num_workers,
         use_gpu=use_gpu,
-        resources_per_worker={"GPU":gpus_per_worker, "CPU": cpus_per_worker}
+        resources_per_worker={"GPU": gpus_per_worker, "CPU": cpus_per_worker}
     )
 
     # Initialize a Ray TorchTrainer
@@ -171,5 +171,5 @@ def train_fashion_mnist(num_workers=4, cpus_per_worker=1, use_gpu=True, gpus_per
 if __name__ == "__main__":
     num_workers = int(os.getenv("NUM_WORKERS", "4"))
     cpus_per_worker = int(os.getenv("CPUS_PER_WORKER", "2"))
-    gpus_per_worker== int(os.getenv("GPUS_PER_WORKER", "2"))
+    gpus_per_worker== int(os.getenv("GPUS_PER_WORKER", "1"))
     train_fashion_mnist(num_workers=num_workers, cpus_per_worker=cpus_per_worker,use_gpu=True)

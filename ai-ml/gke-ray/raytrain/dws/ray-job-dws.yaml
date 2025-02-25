@@ -15,7 +15,7 @@ spec:
     working_dir: "https://github.com/rick-c-goog/kubernetes-engine-samples/archive/main.zip"
     env_vars:
      NUM_WORKERS: "1"
-     CPUS_PER_WORKER: "2"
+     CPUS_PER_WORKER: "1"
      GPUS_PER_WORKER: "1"
   rayClusterSpec:
     rayVersion: '2.9.0'
@@ -66,15 +66,15 @@ spec:
                 image: rayproject/ray:2.9.0
                 resources:
                   limits:
-                    cpu: "1"
-                    ephemeral-storage: "9Gi"
-                    memory: "8Gi"
+                    #cpu: "1"
+                    #ephemeral-storage: "9Gi"
+                    #memory: "8Gi"
                     nvidia.com/gpu: 1
                   requests:
                     cpu: "1"
                     ephemeral-storage: "9Gi"
                     memory: "8Gi"
-                    nvidia.com/gpu: 1
+                    #nvidia.com/gpu: 1
 # [END gke_ai_ml_gke_ray_raytrain_pytorch_mnist_rayjob]
 
             
