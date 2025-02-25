@@ -45,8 +45,8 @@ spec:
              labels:
                kueue.x-k8s.io/queue-name: dws-local-queue
              name: ray-job
-             annotations:
-               gke-gcsfuse/volumes: "true"
+            # annotations:
+            #   gke-gcsfuse/volumes: "true"
           spec:
             nodeSelector:
                cloud.google.com/gke-nodepool: dws-l4-pool
@@ -61,13 +61,15 @@ spec:
                 image: rayproject/ray:2.9.0
                 resources:
                   limits:
-                    cpu: "2"
+                    #cpu: "2"
                     ephemeral-storage: "9Gi"
-                    memory: "8Gi"
+                    #memory: "8Gi"
+                    nvidia.com/gpu: 1
                   requests:
                     cpu: "2"
                     ephemeral-storage: "9Gi"
                     memory: "8Gi"
+                    nvidia.com/gpu: 1
 # [END gke_ai_ml_gke_ray_raytrain_pytorch_mnist_rayjob]
 
             
