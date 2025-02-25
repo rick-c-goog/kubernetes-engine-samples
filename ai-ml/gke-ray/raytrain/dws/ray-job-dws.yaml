@@ -9,6 +9,9 @@ spec:
   shutdownAfterJobFinishes: true
   entrypoint: python ai-ml/gke-ray/raytrain/dws/train.py
   runtimeEnvYAML: |
+    pip:
+      - torch
+      - torchvision
     working_dir: "https://github.com/rick-c-goog/kubernetes-engine-samples/archive/main.zip"
     env_vars:
      NUM_WORKERS: "2"
