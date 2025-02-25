@@ -1,7 +1,13 @@
-export CLUSTER_NAME=rick-a3-mega-spot
-export REGION=asia-northeast1
+export CLUSTER_NAME=dws-cluster
+export REGION=europe-west2
 export ZONE=$REGION-b
-export PREFIX=rick-a3-mega-spot-gpu
+gcloud container clusters create ${CLUSTER_NAME} \
+    --addons=RayOperator \
+    --cluster-version=${CLUSTER_VERSION}  \
+    --machine-type=e2-standard-8 \
+    --location=${COMPUTE_ZONE} \
+    --num-nodes=2
+
 gcloud beta container node-pools create dws-l4-pool \
     --cluster=$CLUSTER_NAME \
     --node-locations $ZONE --region $REGION \
