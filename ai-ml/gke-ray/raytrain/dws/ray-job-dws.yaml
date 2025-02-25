@@ -1,0 +1,73 @@
+apiVersion: ray.io/v1
+kind: RayJob
+metadata:
+  name: pytorch-mnist-job
+spec:
+  shutdownAfterJobFinishes: true
+  entrypoint: python ai-ml/gke-ray/raytrain/dws/raytrain/train.py
+  runtimeEnvYAML: |
+    working_dir: "https://github.com/rick-c-goog/kubernetes-engine-samples/archive/main.zip"
+    env_vars:
+     NUM_WORKERS: "4"
+     CPUS_PER_WORKER: "2"
+  rayClusterSpec:
+    rayVersion: '2.9.0'
+    headGroupSpec:
+      rayStartParams: {}
+      template:
+        spec:
+          containers:
+            - name: ray-head
+              image: rayproject/ray:2.9.0
+              ports:
+                - containerPort: 6379
+                  name: gcs-server
+                - containerPort: 8265
+                  name: dashboard
+                - containerPort: 10001
+                  name: client
+              resources:
+                limits:
+                  cpu: "2"
+                  memory: "4Gi"
+                requests:
+                  cpu: "2"
+                  memory: "4Gi"
+    workerGroupSpecs:
+      - replicas: 1
+        minReplicas: 1
+        maxReplicas: 5
+        groupName: small-group
+        rayStartParams: 
+           num-gpus: "4"
+        template:
+          metadata:
+             labels:
+               kueue.x-k8s.io/queue-name: dws-local-queue
+             name: ray-job
+             annotations:
+               gke-gcsfuse/volumes: "true"
+          spec:
+            nodeSelector:
+               cloud.google.com/gke-nodepool: dws-l4-pool
+               #cloud.google.com/gke-accelerator: nvidia-h100-mega-80gb
+            tolerations:
+               - key: "nvidia.com/gpu"
+                 operator: "Exists"
+                 effect: "NoSchedule"
+            restartPolicy: Never
+            containers:
+              - name: ray-worker
+                image: rayproject/ray:2.9.0
+                resources:
+                  limits:
+                    cpu: "2"
+                    ephemeral-storage: "9Gi"
+                    memory: "8Gi"
+                  requests:
+                    cpu: "2"
+                    ephemeral-storage: "9Gi"
+                    memory: "8Gi"
+# [END gke_ai_ml_gke_ray_raytrain_pytorch_mnist_rayjob]
+
+            
