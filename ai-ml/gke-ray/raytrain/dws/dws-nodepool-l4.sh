@@ -3,9 +3,10 @@ export REGION=europe-west2
 export ZONE=$REGION-b
 gcloud container clusters create ${CLUSTER_NAME} \
     --addons=RayOperator \
+    --region=$REGION
     --cluster-version=${CLUSTER_VERSION}  \
     --machine-type=e2-standard-8 \
-    --location=${COMPUTE_ZONE} \
+    --node-locations=$ZONE \
     --num-nodes=2
 
 gcloud beta container node-pools create dws-l4-pool \
