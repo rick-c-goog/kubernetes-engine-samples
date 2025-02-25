@@ -11,7 +11,7 @@ spec:
   runtimeEnvYAML: |
     working_dir: "https://github.com/rick-c-goog/kubernetes-engine-samples/archive/main.zip"
     env_vars:
-     NUM_WORKERS: "4"
+     NUM_WORKERS: "2"
      CPUS_PER_WORKER: "2"
   rayClusterSpec:
     rayVersion: '2.9.0'
@@ -42,7 +42,7 @@ spec:
         maxReplicas: 5
         groupName: small-group
         rayStartParams: 
-           num-gpus: "4"
+           num-gpus: "1"
         template:
           metadata:
              name: ray-job
