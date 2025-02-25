@@ -7,9 +7,9 @@ metadata:
 spec:
   suspend: true
   shutdownAfterJobFinishes: true
-  entrypoint: python ai-ml/gke-ray/raytrain/dws/raytrain/train.py
+  entrypoint: python ai-ml/gke-ray/raytrain/dws/train.py
   runtimeEnvYAML: |
-    working_dir: "https://github.com/rick-c-goog/kubernetes-engine-samples/archive/main.zip"
+    working_dir: "ttps://github.com/rick-c-goog/kubernetes-engine-samples/archive/main.zip"
     env_vars:
      NUM_WORKERS: "2"
      CPUS_PER_WORKER: "2"
