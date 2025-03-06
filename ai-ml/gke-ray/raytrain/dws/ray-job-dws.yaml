@@ -70,11 +70,11 @@ spec:
                     #ephemeral-storage: "9Gi"
                     #memory: "8Gi"
                     nvidia.com/gpu: 1
-                  requests:
-                    cpu: "1"
-                    ephemeral-storage: "9Gi"
-                    memory: "8Gi"
-                    #nvidia.com/gpu: 1
+                  #requests:
+                  #  cpu: "1"
+                  #  ephemeral-storage: "9Gi"
+                  #  memory: "8Gi"
+                  #nvidia.com/gpu: 1
 # [END gke_ai_ml_gke_ray_raytrain_pytorch_mnist_rayjob]
 
             
