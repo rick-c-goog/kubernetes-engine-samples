@@ -68,3 +68,4 @@ metadata:
 spec:
   clusterQueue: "dws-cluster-queue"
 ---
+# [END gke_ai_ml_gke_ray_raytrain_pytorch_dws_dwsqueue]

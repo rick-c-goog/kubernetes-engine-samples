@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START gke_ai_ml_gke_ray_raytrain_dws-rayjob]
+# [START gke_ai_ml_gke_ray_raytrain_dws_rayjob]
 apiVersion: ray.io/v1
 kind: RayJob
 metadata:
@@ -90,6 +90,6 @@ spec:
                   #  ephemeral-storage: "9Gi"
                   #  memory: "8Gi"
                   #nvidia.com/gpu: 1
-# [END gke_ai_ml_gke_ray_raytrain_pytorch_mnist_rayjob]
+# [END gke_ai_ml_gke_ray_raytrain_dws_rayjob]
 
             
