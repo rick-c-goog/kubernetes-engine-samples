@@ -94,11 +94,11 @@ spec:
                 image: rayproject/ray:2.41.0 #rayproject/ray-ml:2.41.0.021baf-py39
                 resources:
                   limits:
-                    cpu: "1"
+                    cpu: "2"
                     memory: "8G"
                     nvidia.com/gpu: "1"
                   requests:
-                    cpu: "1"
+                    cpu: "2"
                     memory: "8G"
                     nvidia.com/gpu: "1"
                 volumeMounts:
