@@ -38,6 +38,13 @@ spec:
       rayStartParams: {}
       template:
         spec:
+          nodeSelector:
+               cloud.google.com/gke-nodepool: dws-l4-pool
+               #cloud.google.com/gke-accelerator: nvidia-h100-mega-80gb
+          tolerations:
+               - key: "nvidia.com/gpu"
+                 operator: "Exists"
+                 effect: "NoSchedule"
           containers:
             - name: ray-head
               image: rayproject/ray:2.9.0
@@ -52,9 +59,11 @@ spec:
                 limits:
                   cpu: "1"
                   memory: "4Gi"
+                  nvidia.com/gpu: 1
                 requests:
                   cpu: "1"
                   memory: "4Gi"
+                  nvidia.com/gpu: 1
     workerGroupSpecs:
       - replicas: 1
         minReplicas: 1
@@ -89,7 +98,7 @@ spec:
                     cpu: "1"
                   #  ephemeral-storage: "9Gi"
                     memory: "8Gi"
-                  nvidia.com/gpu: 1
+                    nvidia.com/gpu: 1
 # [END gke_ai_ml_gke_ray_raytrain_dws_rayjob]
 
             
