@@ -33,21 +33,21 @@ spec:
      CPUS_PER_WORKER: "1"
      GPUS_PER_WORKER: "1"
   rayClusterSpec:
-    rayVersion: '2.9.0'
+    rayVersion: '2.41.0'
     headGroupSpec:
-      rayStartParams: {}
+      rayStartParams:
+        dashboard-host: '0.0.0.0'
       template:
         spec:
           nodeSelector:
                cloud.google.com/gke-nodepool: dws-l4-pool
-               #cloud.google.com/gke-accelerator: nvidia-h100-mega-80gb
           tolerations:
-               - key: "nvidia.com/gpu"
-                 operator: "Exists"
-                 effect: "NoSchedule"
+          - key: "nvidia.com/gpu"
+            operator: "Exists"
+            effect: "NoSchedule"
           containers:
             - name: ray-head
-              image: rayproject/ray:2.9.0
+              image: rayproject/ray-ml:2.41.0.021baf-py311
               ports:
                 - containerPort: 6379
                   name: gcs-server
@@ -57,48 +57,19 @@ spec:
                   name: client
               resources:
                 limits:
-                  cpu: "1"
-                  memory: "4Gi"
-                  nvidia.com/gpu: 1
+                  cpu: "2"
+                  memory: "8G"
+                  nvidia.com/gpu: "1"
                 requests:
-                  cpu: "1"
-                  memory: "4Gi"
-                  nvidia.com/gpu: 1
-    workerGroupSpecs:
-      - replicas: 1
-        minReplicas: 1
-        maxReplicas: 5
-        groupName: small-group
-        rayStartParams: {}
-        #   num-gpus: "1"
-        template:
-          metadata:
-             name: ray-job
-            # annotations:
-            #   gke-gcsfuse/volumes: "true"
-          spec:
-            nodeSelector:
-               cloud.google.com/gke-nodepool: dws-l4-pool
-               #cloud.google.com/gke-accelerator: nvidia-h100-mega-80gb
-            tolerations:
-               - key: "nvidia.com/gpu"
-                 operator: "Exists"
-                 effect: "NoSchedule"
-            restartPolicy: Never
-            containers:
-              - name: ray-worker
-                image: rayproject/ray:2.9.0
-                resources:
-                  limits:
-                    cpu: "1"
-                    #ephemeral-storage: "9Gi"
-                    memory: "8Gi"
-                    nvidia.com/gpu: 1
-                  requests:
-                    cpu: "1"
-                  #  ephemeral-storage: "9Gi"
-                    memory: "8Gi"
-                    nvidia.com/gpu: 1
+                  cpu: "2"
+                  memory: "8G"
+                  nvidia.com/gpu: "1"
+              volumeMounts:
+                - mountPath: /tmp/ray
+                  name: ray-logs
+          volumes:
+            - name: ray-logs
+              emptyDir: {}
 # [END gke_ai_ml_gke_ray_raytrain_dws_rayjob]
 
             
