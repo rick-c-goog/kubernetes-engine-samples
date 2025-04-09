@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC
+# Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START gke_ai_ml_llm_serving_gemma_vllm_2_2b_it_deployment]
+# [START gke_ai_ml_llm_serving_gemma_vllm_3_1b_it_deployment]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,13 +26,13 @@ spec:
     metadata:
       labels:
         app: gemma-server
-        ai.gke.io/model: gemma-2-2b-it
+        ai.gke.io/model: gemma-3-1b-it
         ai.gke.io/inference-server: vllm
         examples.ai.gke.io/source: user-guide
     spec:
       containers:
       - name: inference-server
-        image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-vllm-serve:20250310_0916_RC00
+        image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-vllm-serve:20250312_0916_RC01
         resources:
           requests:
             cpu: "2"
@@ -52,7 +52,7 @@ spec:
         - --port=8000
         env:
         - name: MODEL_ID
-          value: google/gemma-2-2b-it
+          value: google/gemma-3-1b-it
         - name: HUGGING_FACE_HUB_TOKEN
           valueFrom:
             secretKeyRef:
@@ -81,4 +81,4 @@ spec:
     - protocol: TCP
       port: 8000
       targetPort: 8000
-# [END gke_ai_ml_llm_serving_gemma_vllm_2_2b_it_deployment]
+# [END gke_ai_ml_llm_serving_gemma_vllm_3_1b_it_deployment]
