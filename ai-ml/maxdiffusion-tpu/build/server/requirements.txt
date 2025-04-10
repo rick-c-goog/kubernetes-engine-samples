@@ -7,7 +7,8 @@ pillow
 jax[tpu]==0.4.34.dev20241001 --pre
 google-cloud-storage
 absl-py
-transformers>=4.25.1
+huggingface_hub==0.24.7
+transformers==4.48.1 #transformers>=4.25.1
 datasets
 flax
 optax
@@ -23,5 +24,5 @@ parameterized
 Pillow
 pytest
 tensorflow==2.17.0
-tensorflow-datasets
+tensorflow-datasets>=4.9.6
 ruff>=0.6,<=0.6.4
