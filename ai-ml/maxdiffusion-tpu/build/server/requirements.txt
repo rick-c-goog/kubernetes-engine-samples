@@ -4,7 +4,7 @@
 uvicorn[standard]==0.30.6
 fastapi[all]==0.114.0
 pillow
-jax[tpu]==0.4.34.dev20241001 --pre
+jax[tpu]==0.4.34 --pre #.dev20241001 --pre
 google-cloud-storage
 absl-py
 huggingface_hub==0.24.7
