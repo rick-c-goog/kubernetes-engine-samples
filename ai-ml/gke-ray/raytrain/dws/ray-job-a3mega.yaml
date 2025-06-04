@@ -103,6 +103,9 @@ spec:
             - path: /dev/nvidia-uvm
             - path: /dev/dmabuf_import_helper
       spec:
+        nodeSelector:
+            cloud.google.com/gke-nodepool: a3-megagpu-8g-a3megagpupool
+
         tolerations:
             - key: "nvidia.com/gpu"
               operator: "Exists"
