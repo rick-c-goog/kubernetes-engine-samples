@@ -76,7 +76,7 @@ spec:
      template:
       metadata:
         annotations:
-          kueue.x-k8s.io/podset-preferred-topology: "kubernetes.io/hostname"
+          #kueue.x-k8s.io/podset-preferred-topology: "kubernetes.io/hostname"
           networking.gke.io/default-interface: 'eth0'
           networking.gke.io/interfaces: |
             [
@@ -112,12 +112,12 @@ spec:
           image: rayproject/ray:2.44.1-py39-cu128
           resources:
             limits:
-              cpu: "200"
-              memory: "1600Gi"
+              cpu: "100"
+              memory: "600Gi"
               nvidia.com/gpu: "8"
             requests:
-              cpu: "200"
-              memory: "1600Gi"
+              cpu: "100"
+              memory: "600Gi"
               nvidia.com/gpu: "8"
           env:
           - name: LD_LIBRARY_PATH
