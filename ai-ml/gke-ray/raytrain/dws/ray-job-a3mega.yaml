@@ -27,10 +27,10 @@ spec:
     pip:
       - torch
       - torchvision
-    working_dir: "https://github.com/rick-c-goog/kubernetes-engine-samples/tree/ray-train/archive/main.zip"
+    working_dir: "https://github.com/rick-c-goog/kubernetes-engine-samples/archive/ray-train.zip"
     env_vars:
      NUM_WORKERS: "2"
-     CPUS_PER_WORKER: "1"
+     CPUS_PER_WORKER: "200"
      GPUS_PER_WORKER: "8"
   rayClusterSpec:
    rayVersion: '2.41.0'
