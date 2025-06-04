@@ -109,15 +109,15 @@ spec:
               effect: "NoSchedule"
         containers:
         - name: ray-worker
-          image: rayproject/ray-ml:2.41.0.021baf-py39 #rayproject/ray:2.44.1-py39-cu128 #  
+          image: rayproject/ray:2.44.1-py39-cu128 #rayproject/ray-ml:2.41.0.021baf-py39  #  
           resources:
             limits:
-              cpu: "100"
-              memory: "600Gi"
+              #cpu: "100"
+              #memory: "600Gi"
               nvidia.com/gpu: "8"
             requests:
-              cpu: "100"
-              memory: "600Gi"
+              #cpu: "100"
+              #memory: "600Gi"
               nvidia.com/gpu: "8"
           env:
           - name: LD_LIBRARY_PATH
