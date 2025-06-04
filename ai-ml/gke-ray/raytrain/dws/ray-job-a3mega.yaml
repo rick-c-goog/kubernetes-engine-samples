@@ -30,7 +30,7 @@ spec:
     working_dir: "https://github.com/rick-c-goog/kubernetes-engine-samples/archive/ray-train.zip"
     env_vars:
      NUM_WORKERS: "2"
-     CPUS_PER_WORKER: "100"
+     CPUS_PER_WORKER: "80"
      GPUS_PER_WORKER: "8"
   rayClusterSpec:
    rayVersion: '2.41.0'
@@ -41,7 +41,7 @@ spec:
         spec:
           containers:
             - name: ray-head
-              image: rayproject/ray:2.44.1-py39-cu128 #rayproject/ray-ml:2.41.0.021baf-py39  #
+              image: rayproject/ray-ml:2.41.0.021baf-py39 #rayproject/ray:2.44.1-py39-cu128   #
               env:
               - name: NUM_WORKERS
                 value: "2"
@@ -112,10 +112,10 @@ spec:
               effect: "NoSchedule"
         containers:
         - name: ray-worker
-          image: rayproject/ray:2.44.1-py39-cu128 #rayproject/ray-ml:2.41.0.021baf-py39  #  
+          image: rayproject/ray-ml:2.41.0.021baf-py39 #rayproject/ray:2.44.1-py39-cu128 
           resources:
             limits:
-              cpu: "120"
+              cpu: "100"
               memory: "600Gi"
               nvidia.com/gpu: "8"
             requests:
