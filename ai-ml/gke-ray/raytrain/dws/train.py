@@ -138,7 +138,7 @@ def train_func_per_worker(config: Dict):
         ray.train.report(metrics={"loss": test_loss, "accuracy": accuracy})
 
 
-def train_fashion_mnist(num_workers=4, cpus_per_worker=1, use_gpu=True, gpus_per_worker=1):
+def train_fashion_mnist(num_workers, cpus_per_worker, use_gpu, gpus_per_worker):
     global_batch_size = 32
 
     train_config = {
@@ -172,4 +172,4 @@ if __name__ == "__main__":
     num_workers = int(os.getenv("NUM_WORKERS", "2"))
     cpus_per_worker = int(os.getenv("CPUS_PER_WORKER", "200"))
     gpus_per_worker = int(os.getenv("GPUS_PER_WORKER", "8"))
-    train_fashion_mnist(num_workers=num_workers, cpus_per_worker=cpus_per_worker,use_gpu=True)
+    train_fashion_mnist(num_workers=num_workers, cpus_per_worker=cpus_per_worker,use_gpu=True,gpus_per_worker=gpus_per_worker)
