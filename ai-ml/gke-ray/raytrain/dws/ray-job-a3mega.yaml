@@ -41,7 +41,7 @@ spec:
         spec:
           containers:
             - name: ray-head
-              image: rayproject/ray-ml:2.41.0.021baf-py39 #rayproject/ray:2.44.1-py39-cu128   #
+              image: rayproject/ray:2.44.1-py39-cu128 # rayproject/ray-ml:2.41.0.021baf-py39 #
               env:
               - name: NUM_WORKERS
                 value: "2"
@@ -112,7 +112,7 @@ spec:
               effect: "NoSchedule"
         containers:
         - name: ray-worker
-          image: rayproject/ray-ml:2.41.0.021baf-py39 #rayproject/ray:2.44.1-py39-cu128 
+          image: rayproject/ray:2.44.1-py39-cu128 #rayproject/ray-ml:2.41.0.021baf-py39 #
           resources:
             limits:
               cpu: "100"
