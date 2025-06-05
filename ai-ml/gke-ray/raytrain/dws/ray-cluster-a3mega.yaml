@@ -71,12 +71,12 @@ spec:
           image: rayproject/ray:2.44.1-py39-cu128
           resources:
             limits:
-              #cpu: "200"
-             # memory: "1600Gi"
+              cpu: "200"
+              memory: "1600Gi"
               nvidia.com/gpu: "8"
             requests:
-              #cpu: "120"
-              #memory: "1600Gi"
+              cpu: "200"
+              memory: "1600Gi"
               nvidia.com/gpu: "8"
           env:
           - name: LD_LIBRARY_PATH
